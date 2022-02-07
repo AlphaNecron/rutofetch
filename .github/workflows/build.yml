@@ -1,0 +1,26 @@
+on:
+  create:
+    tags:
+      - v0.*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: build for linux
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.17.6"
+      - name: build for linux
+        run: go build -ldflags "-s -w" -tags osusergo -o out/rutofetch
+      - name: upload to github
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "out/rutofetch"
+          tags: true
+          prerelease: true
+          overwrite: true
