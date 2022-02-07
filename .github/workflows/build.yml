@@ -1,3 +1,4 @@
+name: build
 on:
   create:
     tags:
@@ -22,5 +23,6 @@ jobs:
         with:
           file: "out/rutofetch"
           tags: true
+          draft: false
           prerelease: true
           overwrite: true
