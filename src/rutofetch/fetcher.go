@@ -36,7 +36,7 @@ func getCpuBrand() string {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	return cpuInfo[0].ModelName
+	return shortenCpu(cpuInfo[0].ModelName)
 }
 
 func getMemInfo() string {
