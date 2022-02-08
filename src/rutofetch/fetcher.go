@@ -3,13 +3,12 @@ package rutofetch
 import (
 	"fmt"
 	"github.com/dekobon/distro-detect/linux"
-	cpu2 "github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/mem"
 	"log"
 	"os/user"
 	"runtime"
-	"strings"
 )
 
 func getOs() string {
@@ -33,11 +32,11 @@ func getSysInfo() host.InfoStat {
 }
 
 func getCpuBrand() string {
-	cpu, err := cpu2.Info()
+	cpuInfo, err := cpu.Info()
 	if err != nil {
 		log.Fatalln(err)
 	}
-	return strings.Split(cpu[0].ModelName, " ")[2]
+	return cpuInfo[0].ModelName
 }
 
 func getMemInfo() string {
