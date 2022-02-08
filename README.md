@@ -9,6 +9,7 @@
 #### Building
 ```sh
 git clone https://github.com/AlphaNecron/rutofetch.git
+cd rutofetch
 # build the program
 go build
 ./rutofetch
